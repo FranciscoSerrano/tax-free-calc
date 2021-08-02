@@ -8,7 +8,47 @@
   <title>Tax Free Calculator</title>
 </head>
 <body>
-  <form action="" method="post"></form>
+  <!-- form -->
+  <form action="" class="form">
+    <h1 class="text-center">Tax Free Calculator</h1>
+  <!-- progress bar -->
+  <div class="progressbar">
+    <div class="progress" id="progress"></div>
+    <div class="progress-step progress-step-active"></div>
+    <div class="progress-step"></div>
+    <div class="progress-step"></div>
+  </div>
+    <!-- steps -->
+    <div class="form-step form-step-active">
+      <div class="input-group">
+        <label for="Bag">Bag</label>
+        <input type="text" placeholder="Enter Bag Subtotal" name="bag" id="bag" onblur="getBagValue()">
+      </div>
+      <div class="">
+        <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <div class="input-group">
+        <label for="Taxable">Taxable Items</label>
+        <input type="text" placeholder="Tap '+' to add Items" name="taxable" id=taxable>
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Prev</a>
+        <a href="#" class="btn btn-next">Submit</a>
+      </div>
+    </div>
+    <div class="form-step">
+      <div class="input-group">
+        <div class="tax-rate" id="tax">
+          <p>New Tax Rate is: </p>
+        </div>
+      </div>
+      <div class="btns-group">
+        <a href="#" class="btn btn-prev">Prev</a>
+      </div>
+    </div>
+  </form>
   <script src="app.js"></script>
 </body>
 </html>
