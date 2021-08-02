@@ -2,6 +2,7 @@ const altamonteTaxRate = 0.07;
 
 const prevButton = document.querySelectorAll(".btn-prev");
 const nextButton = document.querySelectorAll(".btn-next");
+const addButton = document.querySelector(".btn-add");
 const submitButton = document.querySelector(".btn-submit")
 const progress = document.getElementById("progress");
 const formSteps = document.querySelectorAll(".form-step");
@@ -58,14 +59,12 @@ function updateProgressBar() {
   progress.style.width = ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
 }
 
-
 function newTaxRate(bag, taxable) {
   if(bag < taxable) return "Error: Bag cannot be less than taxable subtotal";
   if(bag <= 1000 || taxable === 0) return bag;
   const taxRate = (taxable / bag * altamonteTaxRate) * 100;
   return taxRate.toFixed(2);
 }
-
 
 function showTaxRate() {
   tax.innerHTML = `Your new tax rate is: ${newTaxRate(bag, taxable)}%`;

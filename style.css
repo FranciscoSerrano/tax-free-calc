@@ -10,6 +10,7 @@ body {
   display: grid;
   place-items: center;
   min-height: 100vh;
+  background-image: linear-gradient(to bottom right, rgb(133, 54, 235), rgb(57, 221, 194));
 }
 
 label {
@@ -55,7 +56,7 @@ input {
   height: 4px;
   width: 100%;
   background-color: #dcdcdc;
-  z-index: -1;
+  z-index: 0;
 }
 
 .progress {
@@ -72,6 +73,7 @@ input {
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1;
 }
 
 .progress-step::before {
@@ -91,6 +93,7 @@ input {
   border: 1px solid #ccc;
   border-radius: .35rem;
   padding: 1.5rem;
+  background-color: white;
 }
 
 .form-step {
@@ -126,4 +129,20 @@ input {
 
 .btn:hover {
   box-shadow: 0 0 0 2px whitesmoke, 0 0 0 3px rgb(17, 88, 168);
+}
+
+.plus {
+  display: flex;
+  justify-content: space-between;
+}
+
+.btn-add {
+  width: 1rem;
+  height: 1rem;
+  background-color: rgb(17, 88, 168);
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 1rem;
 }
