@@ -10,7 +10,7 @@ body {
   display: grid;
   place-items: center;
   min-height: 100vh;
-  background-image: linear-gradient(to bottom right, rgb(133, 54, 235), rgb(57, 221, 194));
+  background-color: whitesmoke;
 }
 
 label {
