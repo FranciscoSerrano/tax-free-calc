@@ -4,10 +4,13 @@ const prevButton = document.querySelectorAll(".btn-prev");
 const nextButton = document.querySelectorAll(".btn-next");
 const addButton = document.querySelector(".btn-add");
 const submitButton = document.querySelector(".btn-submit")
+const resetButton = document.querySelector(".btn-reset")
 const progress = document.getElementById("progress");
 const formSteps = document.querySelectorAll(".form-step");
 const progressSteps = document.querySelectorAll(".progress-step");
-const tax = document.getElementById("tax");
+let tax = document.getElementById("tax");
+let currentSubtotal = document.getElementById("current-subtotal");
+let currentTaxableTotal = document.getElementById("current-taxable-total");
 
 let numFormSteps = 0;
 let bag = 0;
@@ -15,10 +18,15 @@ let taxable = 0;
 
 nextButton.forEach(btn => {
   btn.addEventListener("click", () => {
-    numFormSteps++;
-    updateFormSteps();
-    updateProgressBar();
     bag = parseInt(document.getElementById("bag").value);
+    if (!bag || bag <= 0) {
+      alert("Please enter a valid subtotal")
+    } else {
+      currentSubtotal.innerHTML = bag;
+      numFormSteps++;
+      updateFormSteps();
+      updateProgressBar();
+    }
   })
 })
 
@@ -39,9 +47,14 @@ submitButton.addEventListener("click", () => {
   showTaxRate();
 })
 
+resetButton.addEventListener("click", () => {
+  bag = 0;
+  currentSubtotal.innerHTML = bag;
+})
+
 function updateFormSteps() {
   formSteps.forEach(formSteps => {
-    formSteps.classList.contains("form-step-active") && 
+    formSteps.classList.contains("form-step-active") &&
     formSteps.classList.remove("form-step-active");
   });
   formSteps[numFormSteps].classList.add("form-step-active");
