@@ -2,17 +2,22 @@ const altamonteTaxRate = 0.07;
 
 const prevButton = document.querySelectorAll(".btn-prev");
 const nextButton = document.querySelectorAll(".btn-next");
+const submitButton = document.querySelector(".btn-submit")
 const progress = document.getElementById("progress");
 const formSteps = document.querySelectorAll(".form-step");
 const progressSteps = document.querySelectorAll(".progress-step");
+const tax = document.getElementById("tax");
 
-let numFormSteps = 0 ;
+let numFormSteps = 0;
+let bag = 0;
+let taxable = 0;
 
 nextButton.forEach(btn => {
   btn.addEventListener("click", () => {
     numFormSteps++;
     updateFormSteps();
     updateProgressBar();
+    bag = parseInt(document.getElementById("bag").value);
   })
 })
 
@@ -22,6 +27,15 @@ prevButton.forEach(btn => {
     updateFormSteps();
     updateProgressBar();
   })
+})
+
+submitButton.addEventListener("click", () => {
+  numFormSteps++;
+  updateFormSteps();
+  updateProgressBar();
+  console.log("submitted");
+  taxable = parseInt(document.getElementById("taxable").value);
+  showTaxRate();
 })
 
 function updateFormSteps() {
@@ -50,4 +64,9 @@ function newTaxRate(bag, taxable) {
   if(bag <= 1000 || taxable === 0) return bag;
   const taxRate = (taxable / bag * altamonteTaxRate) * 100;
   return taxRate.toFixed(2);
+}
+
+
+function showTaxRate() {
+  tax.innerHTML = `Your new tax rate is: ${newTaxRate(bag, taxable)}%`;
 }
