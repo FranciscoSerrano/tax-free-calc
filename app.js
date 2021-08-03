@@ -3,6 +3,7 @@ const altamonteTaxRate = 0.07;
 const prevButton = document.querySelectorAll(".btn-prev");
 const nextButton = document.querySelectorAll(".btn-next");
 const addButton = document.querySelector(".btn-add");
+const removeButton = document.querySelector(".btn-remove");
 const submitButton = document.querySelector(".btn-submit")
 const resetButton = document.querySelector(".btn-reset")
 const progress = document.getElementById("progress");
@@ -15,6 +16,7 @@ let currentTaxableTotal = document.getElementById("current-taxable-total");
 let numFormSteps = 0;
 let bag = 0;
 let taxable = 0;
+let taxableCount = 2;
 
 nextButton.forEach(btn => {
   btn.addEventListener("click", () => {
@@ -43,18 +45,45 @@ submitButton.addEventListener("click", () => {
   updateFormSteps();
   updateProgressBar();
   console.log("submitted");
-  taxable = parseInt(document.getElementById("taxable").value);
+  // taxable = parseInt(document.getElementById("taxable").value);
+  calculateTaxableItems();
   showTaxRate();
 })
 
 resetButton.addEventListener("click", () => {
   bag = 0;
-  currentSubtotal.innerHTML = bag;
+  taxable = 0;
+  taxableCount = 2;
+  currentSubtotal.innerHTML = 0;
+  currentTaxableTotal.innerHTML = 0;
 })
 
 addButton.addEventListener("click", () => {
   addInputField();
+  taxableCount++;
+  console.log(taxableCount);
 })
+
+removeButton.addEventListener("click", () => {
+  const plusItemsChilds = document.getElementById("plus-items").childNodes
+
+  if (plusItemsChilds.length > 3) {
+    removeInputField();
+    taxableCount--;
+  }
+  console.log(taxableCount);
+})
+
+function calculateTaxableItems() {
+  const plusItems = document.getElementById("plus-items");
+  const childNode = plusItems.children.length;
+  let sum = 0;
+  for (let i = 1; i <= childNode; i++) {
+    const item = parseInt(document.getElementById(`taxable${i}`).value)
+    sum += item;
+  }
+  currentTaxableTotal.innerHTML = sum;
+}
 
 function updateFormSteps() {
   formSteps.forEach(formSteps => {
@@ -77,20 +106,29 @@ function updateProgressBar() {
 }
 
 function addInputField() {
-  const taxable = document.getElementById("taxable");
-  const clone = taxable.cloneNode();
+  const taxableItem = document.createElement('input');
+  taxableItem.type = "text";
+  taxableItem.name = "taxable";
+  taxableItem.className = "taxable";
+  taxableItem.id = `taxable${taxableCount}`;
 
-  const element = document.getElementById("plus-items");
-  element.appendChild(clone);
+  const plusItems = document.getElementById("plus-items");
+  plusItems.appendChild(taxableItem);
+}
+
+function removeInputField() {
+  const plusItems = document.getElementById("plus-items")
+  const lastTaxableItem = plusItems.lastChild;
+  lastTaxableItem.remove();
 }
 
 function newTaxRate(bag, taxable) {
-  if(bag < taxable) return "Error: Bag cannot be less than taxable subtotal";
-  if(bag <= 1000 || taxable === 0) return bag;
+  if (bag < taxable) return "Error: Bag cannot be less than taxable subtotal";
+  if (bag <= 1000 || taxable === 0) return (altamonteTaxRate * 100).toFixed(2);
   const taxRate = (taxable / bag * altamonteTaxRate) * 100;
   return taxRate.toFixed(2);
 }
 
 function showTaxRate() {
-  tax.innerHTML = `Your new tax rate is: ${newTaxRate(bag, taxable)}%`;
+  tax.innerHTML = `Your new tax rate is: ${newTaxRate(parseInt(currentSubtotal.innerHTML), parseInt(currentTaxableTotal.innerHTML))}%`;
 }
