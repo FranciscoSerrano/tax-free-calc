@@ -3,6 +3,7 @@ const altamonteTaxRate = 0.07;
 const prevButton = document.querySelectorAll(".btn-prev");
 const nextButton = document.querySelectorAll(".btn-next");
 const addButton = document.querySelector(".btn-add");
+const removeButton = document.querySelector(".btn-remove");
 const submitButton = document.querySelector(".btn-submit")
 const resetButton = document.querySelector(".btn-reset")
 const progress = document.getElementById("progress");
@@ -56,6 +57,14 @@ addButton.addEventListener("click", () => {
   addInputField();
 })
 
+removeButton.addEventListener("click", () => {
+  const plusItemsChilds = document.getElementById("plus-items").childNodes
+
+  if (plusItemsChilds.length > 3) {
+    removeInputField();
+  }
+})
+
 function updateFormSteps() {
   formSteps.forEach(formSteps => {
     formSteps.classList.contains("form-step-active") &&
@@ -77,11 +86,19 @@ function updateProgressBar() {
 }
 
 function addInputField() {
-  const taxable = document.getElementById("taxable");
-  const clone = taxable.cloneNode();
+  const taxableItem = document.createElement('input');
+  taxableItem.type = "text";
+  taxableItem.name = "taxable";
+  taxableItem.id = "taxable";
 
-  const element = document.getElementById("plus-items");
-  element.appendChild(clone);
+  const plusItems = document.getElementById("plus-items");
+  plusItems.appendChild(taxableItem);
+}
+
+function removeInputField() {
+  const plusItems = document.getElementById("plus-items")
+  const lastTaxableItem = plusItems.lastChild;
+  lastTaxableItem.remove();
 }
 
 function newTaxRate(bag, taxable) {
