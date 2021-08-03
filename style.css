@@ -89,7 +89,7 @@ input {
 /* form */
 .form {
   width: clamp(320px, 30%, 430px);
-  margin: 0, auto;
+  margin: 0 auto;
   border: 1px solid #ccc;
   border-radius: .35rem;
   padding: 1.5rem;
@@ -105,7 +105,7 @@ input {
 }
 
 .input-group {
-  margin: 2rem, 0;
+  margin: 2rem 0;
 }
 
 /* button */
