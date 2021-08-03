@@ -52,6 +52,10 @@ resetButton.addEventListener("click", () => {
   currentSubtotal.innerHTML = bag;
 })
 
+addButton.addEventListener("click", () => {
+  addInputField();
+})
+
 function updateFormSteps() {
   formSteps.forEach(formSteps => {
     formSteps.classList.contains("form-step-active") &&
@@ -70,6 +74,14 @@ function updateProgressBar() {
   })
   const progressActive = document.querySelectorAll(".progress-step-active");
   progress.style.width = ((progressActive.length - 1) / (progressSteps.length - 1)) * 100 + "%";
+}
+
+function addInputField() {
+  const taxable = document.getElementById("taxable");
+  const clone = taxable.cloneNode();
+
+  const element = document.getElementById("plus-items");
+  element.appendChild(clone);
 }
 
 function newTaxRate(bag, taxable) {
