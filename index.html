@@ -18,22 +18,36 @@
     <div class="progress-step"></div>
     <div class="progress-step"></div>
   </div>
+  <!-- current totals -->
+  <div class="current-totals">
+    <div>
+      <p>Current Subtotal: <strong><span id="current-subtotal">0</span></strong></p>
+    </div>
+    <div>
+      <p>Taxable item total: <strong><span id="current-taxable-total">0</span></strong></p>
+    </div>
+  </div>
     <!-- steps -->
     <div class="form-step form-step-active">
       <div class="input-group">
-        <label for="Bag">Bag</label>
-        <input type="text" placeholder="Enter Bag Subtotal" name="bag" id="bag">
+        <label for="Bag">Subtotal</label>
+        <input type="number" placeholder="Enter Bag Subtotal" name="bag" id="bag">
       </div>
-      <div class="">
-        <a href="#" class="btn btn-next width-50 ml-auto">Next</a>
+      <div class="btns-group">
+        <input class="btn btn-reset" type="reset" value="Reset Bag">
+        <a href="#" class="btn btn-next">Next</a>
       </div>
     </div>
     <div class="form-step">
       <div class="input-group">
         <label for="Taxable">Taxable Items</label>
-        <div class="plus">
-        <input type="text" placeholder="Tap '+' to add Items" name="taxable" id=taxable>
-        <a href="#" class="btn btn-add">+</a>
+        <div class="plus" id="plus">
+          <div class="plus-items" id="plus-items">
+            <input type="text" placeholder="Tap '+' to add Items" name="taxable" id="taxable">
+          </div>
+          <div>
+            <a href="#" class="btn btn-add">+</a>
+          </div>
         </div>
       </div>
       <div class="btns-group">
