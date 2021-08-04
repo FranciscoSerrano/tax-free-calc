@@ -47,6 +47,7 @@ submitButton.addEventListener("click", () => {
   console.log("submitted");
   // taxable = parseInt(document.getElementById("taxable").value);
   calculateTaxableItems();
+  validateTotal();
   showTaxRate();
 })
 
@@ -74,6 +75,11 @@ removeButton.addEventListener("click", () => {
   console.log(taxableCount);
 })
 
+function validateTotal() {
+  if(currentSubtotal - currentTaxableTotal != 1000){
+    alert("Please check that your taxable items are right.")
+  }
+}
 function calculateTaxableItems() {
   const plusItems = document.getElementById("plus-items");
   const childNode = plusItems.children.length;
@@ -107,7 +113,7 @@ function updateProgressBar() {
 
 function addInputField() {
   const taxableItem = document.createElement('input');
-  taxableItem.type = "text";
+  taxableItem.type = "number";
   taxableItem.name = "taxable";
   taxableItem.className = "taxable";
   taxableItem.id = `taxable${taxableCount}`;
