@@ -67,7 +67,6 @@ resetButton.addEventListener("click", () => {
 addButton.addEventListener("click", () => {
   addInputField();
   taxableCount++;
-  console.log(taxableCount);
 })
 
 removeButton.addEventListener("click", () => {
@@ -77,7 +76,6 @@ removeButton.addEventListener("click", () => {
     removeInputField();
     taxableCount--;
   }
-  console.log(taxableCount);
 })
 
 function validateTotal() {
