@@ -56,12 +56,7 @@ submitButton.addEventListener("click", () => {
 })
 
 resetButton.addEventListener("click", () => {
-  bag = 0;
-  taxable = 0;
-  taxableCount = 2;
-  currentSubtotal.innerHTML = 0;
-  currentTaxableTotal.innerHTML = 0;
-  bagInput.value = "";
+  location.reload()
 })
 
 addButton.addEventListener("click", () => {
