@@ -9,6 +9,8 @@ const resetButton = document.querySelector(".btn-reset")
 const progress = document.getElementById("progress");
 const formSteps = document.querySelectorAll(".form-step");
 const progressSteps = document.querySelectorAll(".progress-step");
+
+let bagInput = document.getElementById("bag");
 let tax = document.getElementById("tax");
 let currentSubtotal = document.getElementById("current-subtotal");
 let currentTaxableTotal = document.getElementById("current-taxable-total");
@@ -59,6 +61,7 @@ resetButton.addEventListener("click", () => {
   taxableCount = 2;
   currentSubtotal.innerHTML = 0;
   currentTaxableTotal.innerHTML = 0;
+  bagInput.value = "";
 })
 
 addButton.addEventListener("click", () => {
