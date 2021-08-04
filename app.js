@@ -138,5 +138,5 @@ function newTaxRate(bag, taxable) {
 }
 
 function showTaxRate() {
-  tax.innerHTML = `Your new tax rate is: ${newTaxRate(parseInt(currentSubtotal.innerHTML), parseInt(currentTaxableTotal.innerHTML))}%`;
+  tax.innerHTML = `Your new tax rate is: <span>${newTaxRate(parseInt(currentSubtotal.innerHTML), parseInt(currentTaxableTotal.innerHTML))}%</span>`;
 }

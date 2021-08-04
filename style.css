@@ -107,6 +107,19 @@ input {
   margin: 2rem 0;
 }
 
+.current-totals {
+  display: block;
+}
+
+.current-totals strong {
+  float: right;
+}
+
+.tax-rate span {
+  float: right;
+  font-weight: 700;
+}
+
 /* button */
 .btns-group {
   display: grid;
