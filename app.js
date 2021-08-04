@@ -41,14 +41,16 @@ prevButton.forEach(btn => {
 })
 
 submitButton.addEventListener("click", () => {
-  numFormSteps++;
-  updateFormSteps();
-  updateProgressBar();
-  console.log("submitted");
-  // taxable = parseInt(document.getElementById("taxable").value);
   calculateTaxableItems();
-  validateTotal();
-  showTaxRate();
+
+  if (validateTotal() === true) {
+    numFormSteps++;
+    updateFormSteps();
+    updateProgressBar();
+    showTaxRate();
+  } else {
+    alert("Please check that your taxable items are right.")
+  }
 })
 
 resetButton.addEventListener("click", () => {
@@ -76,8 +78,10 @@ removeButton.addEventListener("click", () => {
 })
 
 function validateTotal() {
-  if(currentSubtotal.innerHTML - currentTaxableTotal.innerHTML != 1000){
-    alert("Please check that your taxable items are right.")
+  if(currentSubtotal.innerHTML - currentTaxableTotal.innerHTML != 1000) {
+    return false
+  } else {
+    return true
   }
 }
 
