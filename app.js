@@ -76,10 +76,11 @@ removeButton.addEventListener("click", () => {
 })
 
 function validateTotal() {
-  if(currentSubtotal - currentTaxableTotal != 1000){
+  if(currentSubtotal.innerHTML - currentTaxableTotal.innerHTML != 1000){
     alert("Please check that your taxable items are right.")
   }
 }
+
 function calculateTaxableItems() {
   const plusItems = document.getElementById("plus-items");
   const childNode = plusItems.children.length;
