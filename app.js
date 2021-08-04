@@ -41,13 +41,16 @@ prevButton.forEach(btn => {
 })
 
 submitButton.addEventListener("click", () => {
-  numFormSteps++;
-  updateFormSteps();
-  updateProgressBar();
-  console.log("submitted");
-  // taxable = parseInt(document.getElementById("taxable").value);
   calculateTaxableItems();
-  showTaxRate();
+
+  if (validateTotal()) {
+    numFormSteps++;
+    updateFormSteps();
+    updateProgressBar();
+    showTaxRate();
+  } else {
+    alert("Please make sure that your taxables + $1000 matches your subtotal.")
+  }
 })
 
 resetButton.addEventListener("click", () => {
@@ -73,6 +76,11 @@ removeButton.addEventListener("click", () => {
   }
   console.log(taxableCount);
 })
+
+function validateTotal() {
+  if(currentSubtotal.innerHTML - currentTaxableTotal.innerHTML != 1000) return false;
+  return true
+}
 
 function calculateTaxableItems() {
   const plusItems = document.getElementById("plus-items");
@@ -107,7 +115,7 @@ function updateProgressBar() {
 
 function addInputField() {
   const taxableItem = document.createElement('input');
-  taxableItem.type = "text";
+  taxableItem.type = "number";
   taxableItem.name = "taxable";
   taxableItem.className = "taxable";
   taxableItem.id = `taxable${taxableCount}`;
@@ -130,5 +138,5 @@ function newTaxRate(bag, taxable) {
 }
 
 function showTaxRate() {
-  tax.innerHTML = `Your new tax rate is: ${newTaxRate(parseInt(currentSubtotal.innerHTML), parseInt(currentTaxableTotal.innerHTML))}%`;
+  tax.innerHTML = `Your new tax rate is: <span>${newTaxRate(parseInt(currentSubtotal.innerHTML), parseInt(currentTaxableTotal.innerHTML))}%</span>`;
 }
