@@ -43,13 +43,13 @@ prevButton.forEach(btn => {
 submitButton.addEventListener("click", () => {
   calculateTaxableItems();
 
-  if (validateTotal() === true) {
+  if (validateTotal()) {
     numFormSteps++;
     updateFormSteps();
     updateProgressBar();
     showTaxRate();
   } else {
-    alert("Please check that your taxable items are right.")
+    alert("Please make sure that your taxables + $1000 matches your subtotal.")
   }
 })
 
@@ -78,11 +78,8 @@ removeButton.addEventListener("click", () => {
 })
 
 function validateTotal() {
-  if(currentSubtotal.innerHTML - currentTaxableTotal.innerHTML != 1000) {
-    return false
-  } else {
-    return true
-  }
+  if(currentSubtotal.innerHTML - currentTaxableTotal.innerHTML != 1000) return false;
+  return true
 }
 
 function calculateTaxableItems() {
